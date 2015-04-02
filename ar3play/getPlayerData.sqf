@@ -1,4 +1,4 @@
-private ['_unit', '_name', '_status', '_vehicletype', '_classtype', '_pos'];
+private ['_unit', '_name', '_status', '_vehicletype', '_classtype', '_classTypes', '_pos'];
 
 _unit = _this select 0;
 
@@ -36,66 +36,38 @@ if (vehicle _unit == _unit) then {
 	};
 };
 
-_classtype = 'unknown';
-if (
-	(_unit isKindOf 'B_soldier_AR_F') or
-	(_unit isKindOf 'I_soldier_AR_F') or
-	(_unit isKindOf 'O_soldier_AR_F')
-) then {
-	_classtype = 'mg';
-} else { if (
-	(_unit isKindOf 'B_Soldier_SL_F') or
-	(_unit isKindOf 'I_Soldier_SL_F') or
-	(_unit isKindOf 'O_Soldier_SL_F')
-) then {
-	_classtype = 'officer';
-} else { if (
-	(_unit isKindOf 'B_soldier_TL_F') or
-	(_unit isKindOf 'I_soldier_TL_F') or
-	(_unit isKindOf 'O_soldier_TL_F')
-) then {
-	_classtype = 'leader';
-} else { if (
-	(_unit isKindOf 'B_Soldier_GL_F') or
-	(_unit isKindOf 'I_Soldier_GL_F') or
-	(_unit isKindOf 'O_Soldier_GL_F')
-) then {
-	_classtype = 'unknown';
-} else { if (
-	(_unit isKindOf 'B_soldier_LAT_F') or
-	(_unit isKindOf 'I_soldier_LAT_F') or
-	(_unit isKindOf 'O_soldier_LAT_F')
-) then {
-	_classtype = 'at';
-} else { if (
-	(_unit isKindOf 'B_soldier_AA_F') or
-	(_unit isKindOf 'I_soldier_AA_F') or
-	(_unit isKindOf 'O_soldier_AA_F')
-) then {
-	_classtype = 'at';
-} else { if (
-	(_unit isKindOf 'B_medic_F') or
-	(_unit isKindOf 'I_medic_F') or
-	(_unit isKindOf 'O_medic_F')
-) then {
-	_classtype = 'medic';
-} else { if (
-	(_unit isKindOf 'B_Soldier_repair_F') or
-	(_unit isKindOf 'I_Soldier_repair_F') or
-	(_unit isKindOf 'O_Soldier_repair_F')
-) then {
-	_classtype = 'engineer';
-} else { if (
-	(_unit isKindOf 'B_Soldier_exp_F') or
-	(_unit isKindOf 'I_Soldier_exp_F') or
-	(_unit isKindOf 'O_Soldier_exp_F')
-) then {
-	_classtype = 'explosive';
-};};};};};};};};};
+_classTypes = [
+    'mg', 'mg', 'mg',
+    'officer', 'officer', 'officer',
+    'leader', 'leader', 'leader',
+    'grenadier', 'grenadier', 'grenadier',
+    'at', 'at', 'at',
+    'aa', 'aa', 'aa',
+    'medic', 'medic', 'medic',
+    'engineer', 'engineer', 'engineer',
+    'explosive', 'explosive', 'explosive'
+];
+
+_classType = 'unknown';
+{
+    if (_unit isKindOf _x) exitWith {
+    	_classType = _classTypes select _forEachIndex
+    };
+} forEach [
+    'B_Soldier_AR_F',    'I_Soldier_AR_F',     'O_Soldier_AR_F',
+    'B_Soldier_SL_F',    'I_Soldier_SL_F',     'O_Soldier_SL_F',
+    'B_Soldier_TL_F',    'I_Soldier_TL_F',     'O_Soldier_TL_F',
+	'B_Soldier_GL_F',    'I_Soldier_GL_F',     'O_Soldier_GL_F',
+	'B_soldier_LAT_F',   'I_soldier_LAT_F',    'O_soldier_LAT_F',
+	'B_soldier_AA_F',    'I_soldier_AA_F',     'O_soldier_AA_F',
+	'B_medic_F',         'I_medic_F',          'O_medic_F',
+	'B_Soldier_repair_F', 'I_Soldier_repair_F', 'O_Soldier_repair_F',
+	'B_Soldier_exp_F',   'I_Soldier_exp_F',    'O_Soldier_exp_F'
+];
 
 [
 	_name,
 	_pos,
 	[format ["%1", side _unit], _classtype],
 	[_status, _vehicletype]
-];
+]
