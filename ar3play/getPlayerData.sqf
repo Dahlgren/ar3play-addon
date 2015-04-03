@@ -42,6 +42,8 @@ if (vehicle _unit == _unit) then {
 	} forEach [
 	    'Truck_F', 'Tank', 'Car', 'Ship', 'Helicopter'
     ];
+
+	_pos = (getPosASL _veh) + [getDir _veh];
 };
 
 _role = [
