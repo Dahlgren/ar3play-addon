@@ -31,9 +31,17 @@ if (vehicle _unit == _unit) then {
 	_vehicletype = 'none';
 } else {
 	_veh = vehicle _unit;
-	if (_veh isKindOf "Helicopter") then {
-		_vehicletype = 'helicopter';
-	};
+	_vehicleTypes = [
+	    'truck', 'tank', 'car', 'ship', 'helicopter'
+	];
+
+	{
+	    if (_veh isKindOf _x) exitWith {
+	    	_vehicleType = _vehicleTypes select _forEachIndex
+	    };
+	} forEach [
+	    'Truck_F', 'Tank', 'Car', 'Ship', 'Helicopter'
+    ];
 };
 
 _role = [
