@@ -2,7 +2,7 @@ private ['_unit', '_name', '_status', '_vehicletype', '_classtype', '_classTypes
 
 _unit = _this select 0;
 
-_pos = (getPos _unit) + [getDir _unit];
+_pos = (getPosASL _unit) + [getDir _unit];
 
 _name = _unit getVariable ['ga_name', ''];
 if (_name == '') then {
