@@ -1,3 +1,4 @@
+private ['_unit', '_name', '_status', '_vehicletype', '_pos', '_role'];
 
 _unit = _this select 0;
 
