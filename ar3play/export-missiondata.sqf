@@ -40,7 +40,9 @@ if (isDedicated) then {
 		while {(count allUnits > 0) and (ENABLE_REPLAY)} do {
 			_playersArray = [];
 			{
-				_playerArray = [_x] call _getPlayerData;
+				if (side _x != sideLogic) then {
+					_playerArray = [_x] call _getPlayerData;
+				};
 				_playersArray = _playersArray + [_playerArray];
 			} forEach allUnits + allDead - vehicles - agents;
 
