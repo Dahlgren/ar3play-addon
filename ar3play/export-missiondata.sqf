@@ -42,8 +42,8 @@ if (isDedicated) then {
 			{
 				if (side _x != sideLogic) then {
 					_playerArray = [_x] call _getPlayerData;
+					_playersArray = _playersArray + [_playerArray];
 				};
-				_playersArray = _playersArray + [_playerArray];
 			} forEach allUnits + allDead - vehicles - agents;
 
 			['setAllPlayerData', [_playersArray]] call sock_rpc;
