@@ -1,5 +1,9 @@
-ENABLE_REPLAY = true;
-IS_STREAMABLE = true;
+if (isNil "ENABLE_REPLAY") then {
+	ENABLE_REPLAY = true;
+};
+if (isNil "IS_STREAMABLE") then {
+	IS_STREAMABLE = true;
+};
 
 waitUntil {isDedicated || {not(isNull player)}};
 

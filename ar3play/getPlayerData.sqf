@@ -2,7 +2,7 @@ private ['_unit', '_name', '_status', '_vehicletype', '_pos', '_role'];
 
 _unit = _this select 0;
 
-_pos = (getPosASL _unit) + [getDir _unit];
+_pos = (getPosATL _unit) + [getDir _unit];
 
 _name = _unit getVariable ['ga_name', ''];
 if (_name == '') then {
@@ -43,7 +43,7 @@ if (vehicle _unit == _unit) then {
 	    'Truck_F', 'Tank', 'Car', 'Ship', 'Helicopter'
     ];
 
-	_pos = (getPosASL _veh) + [getDir _veh];
+	_pos = (getPosATL _veh) + [getDir _veh];
 };
 
 _role = [

@@ -29,9 +29,7 @@ if (isDedicated) then {
 
 	['missionStart', [missionName, worldName]] call sock_rpc;
 
-	if (IS_STREAMABLE) then {
-		['setIsStreamable', [true]] call sock_rpc;
-	};
+	['setIsStreamable', [IS_STREAMABLE]] call sock_rpc;
 
 	[_getPlayerData] spawn {
 		private "_getPlayerData";
@@ -47,7 +45,7 @@ if (isDedicated) then {
 			} forEach allUnits + allDead - vehicles - agents;
 
 			['setAllPlayerData', [_playersArray]] call sock_rpc;
-			sleep 2;
+			sleep 1;
 		};
 	};
 };
